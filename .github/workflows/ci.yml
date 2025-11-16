@@ -204,6 +204,12 @@ jobs:
       - name: Push Docker image with latest tag
         run: docker push ghcr.io/mrlvsb/kelvin:latest
 
+      - uses: actions/delete-package-versions@v5
+        with:
+          package-name: 'kelvin'
+          package-type: 'container'
+          min-versions-to-keep: 15
+
   # Summary job to enable easier handling of required status checks.
   # On PRs, we need everything to be green, while deploy is skipped.
   # On merge queue, we need everything to be green.
